@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: https://guangl.github.io/index.xml
+Disallow:
