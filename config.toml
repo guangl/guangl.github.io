@@ -59,9 +59,9 @@ lazyImage = true
 # name = "Slides"
 # link = "/presentations"
 
-[[params.socials]]
-name = "Travel"
-link = "/travel"
+# [[params.socials]]
+# name = "Travel"
+# link = "/travel"
 [[params.socials]]
 name = "About"
 link = "https://github.com/guangl"
