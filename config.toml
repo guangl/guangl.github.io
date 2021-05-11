@@ -1,0 +1,67 @@
+baseURL = "https://guangl.github.io/"
+languageCode = "en-us"
+title = "blog"
+theme = "yinyang"
+DefaultContentLanguage = "cn"
+enableRobotsTXT = true
+canonifyURLs = false
+
+# [related]
+# includeNewer = true
+# threshold = 80
+# toLower = false
+# [[related.indices]]
+# name = "date"
+# weight = 100
+# [[related.indices]]
+# name = "keywords"
+# weight = 100
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    guessSyntax = true
+    noClasses = true
+    style = "dracula"
+    tabWidth = 2
+
+[author]
+  name = "Guang Luo"
+  homepage = "https://github.com/guangl"
+
+[languages]
+  # [languages.en]
+  #   contentDir = "content/en"
+  #   languageName = "English"
+  #   weight = 1
+  [languages.cn]
+    contentDir = "content/cn"
+    languageName = "简体中文"
+    weight = 2
+
+[permalinks]
+    post = "/blog/:title/"
+
+[params]
+headTitle = "guangl's Blog"
+description = "Code change the World."
+favicon = "/logo.png"
+mainSections = ["posts"]
+lazyImage = true
+
+# [[params.socials]]
+# name = "RSS"
+# link = "/index.xml"
+
+# [[params.socials]]
+# name = "Slides"
+# link = "/presentations"
+
+[[params.socials]]
+name = "Travel"
+link = "/travel"
+[[params.socials]]
+name = "About"
+link = "https://github.com/guangl"
