@@ -1,3 +1,4 @@
-# blog
+# 我的博客
 
-Hugo blog
+## Contribution Server
+[Hugo](https://gohugo.io/)
