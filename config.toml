@@ -1,6 +1,6 @@
 baseURL = "https://guangl.github.io/"
 languageCode = "en-us"
-title = "blog"
+title = "guangl's blog"
 theme = "yinyang"
 DefaultContentLanguage = "cn"
 enableRobotsTXT = true
@@ -45,7 +45,7 @@ canonifyURLs = false
     post = "/blog/:title/"
 
 [params]
-headTitle = "guangl's Blog"
+headTitle = "Hello World"
 description = "Code change the World."
 favicon = "/logo.png"
 mainSections = ["posts"]
