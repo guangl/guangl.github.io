@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>guangl's blog</title><link>https://guangl.github.io/</link><description>Recent content on guangl's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://guangl.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>axios 二次封装</title><link>https://guangl.github.io/posts/axios-secondary-packaging/</link><pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate><guid>https://guangl.github.io/posts/axios-secondary-packaging/</guid><description>axios 一个基于 Promise http 客户端。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>guangl's blog</title><link>https://guangl.github.io/</link><description>Recent content on guangl's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 12 May 2021 22:10:42 +0800</lastBuildDate><atom:link href="https://guangl.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>水调歌头</title><link>https://guangl.github.io/posts/prelude-to-water-melody/</link><pubDate>Wed, 12 May 2021 22:10:42 +0800</pubDate><guid>https://guangl.github.io/posts/prelude-to-water-melody/</guid><description>水调歌头 · 明月几时有 (宋) 苏轼
+丙辰中秋，欢饮达旦，大醉，作此篇，兼怀子由。
+明月几时有，把酒问青天。不知天上宫阙，今夕是何年？
+我欲乘风归去，又恐琼楼玉宇，高处不胜寒，起舞弄清影，何似在人间？
+转朱阁，低绮户，照无眠，不应有恨，何事长向别时圆？
+人有悲欢离合，月有阴晴圆缺，此事古难全。
+但愿人长久，千里共婵娟。</description></item><item><title>axios 二次封装</title><link>https://guangl.github.io/posts/axios-secondary-packaging/</link><pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate><guid>https://guangl.github.io/posts/axios-secondary-packaging/</guid><description>axios 一个基于 Promise http 客户端。
 一般来说使用 axios 需要二次封装，这篇博客就是从这个角度来考虑的。
 安装 axios yarn add axios 使用 axios axios({ method: &amp;#39;GET&amp;#39;, url: &amp;#39;your url&amp;#39;, }) 上面的代码表示，使用 get 请求来请求 &amp;ldquo;your url&amp;rdquo; 这个链接，同样 axios 也支持 PUT, POST, DELETE 等请求方法。
 响应结构 文档在这里
