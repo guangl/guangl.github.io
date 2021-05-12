@@ -2,7 +2,7 @@
 title: "axios 二次封装"
 date: 2021-05-12
 categories: ['Front-End']
-draft: true
+draft: false
 ---
 
 [axios](https://github.com/axios/axios) 一个基于 Promise http 客户端。
