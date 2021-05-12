@@ -1,6 +1,6 @@
 ---
 title: "axios 二次封装"
-date: 2021-05-12T00:07:00+08:00
+date: 2021-05-12
 categories: ['Front-End']
 draft: true
 ---
@@ -118,19 +118,19 @@ const service = axios.create({
 ```js
 service.interceptor.request.use(
 	(config) => {
-    
+
   },
   (error) => {
-    
+
   }
 );
 
 service.interceptor.response.use(
   (config) => {
-    
+
   },
   (error) => {
-    
+
   }
 )
 ```
@@ -144,7 +144,7 @@ service.interceptor.request.use(
 	(config) => {
     const token = localStorage.getItem('token')
     config.headers.Authorization = token
-    
+
     return config
   }
 )
@@ -164,10 +164,10 @@ service.interceptor.request.use(
 	(config) => {
     // 全局使用 loading
     showLoading = ElLoading.service({ fullscreen: true })
-    
+
     const token = localStorage.getItem('token')
     config.headers.Authorization = token
-    
+
     return config
   }
 )
@@ -176,7 +176,7 @@ service.interceptor.response.use(
 	(config) => {
     // 关闭全局的 loading
     if (showLoading) showLoading.close()
-    
+
     return config.data
   }
 )
@@ -190,9 +190,9 @@ service.interceptor.response.use(
 service.interceptor.response.use(
 	(config) => {
     if (showLoading) showLoading.close()
-    
+
     const { data: { code, message } } = config
-    
+
     switch (true) {
       case /1/.test(code):
       case /200/.test(code):
@@ -202,100 +202,100 @@ service.interceptor.response.use(
           showClose: true,
         })
         break
-        
+
 			case /0/.test(code):
         ElMessage({
           type: 'error',
           message,
           showClose: true,
         })
-        
+
         router.push('/401')
         // or
         router.push('/login')
         break
-        
+
       case /401/.test(code):
         ElMessage({
           type: 'error',
           message,
           showClose: true,
         })
-        
+
         router.push('/401')
         // or
         router.push('/login')
         break
-        
+
       case /403/.test(code):
         ElMessage({
           type: 'error',
           message,
           showClose: true,
         })
-        
+
         router.push('/403')
         break
-        
+
       case /404/.test(code):
         ElMessage({
           type: 'error',
           message,
           showClose: true,
         })
-        
+
         router.push('/404')
         break
-        
+
       default:
         break
     }
-    
+
     return config.data
   },
   (error) => {
     // 请求失败也需要清除全局 loading
     if (showLoading) showLoading.close()
-    
+
     const { code } = error.response
-    
-    switch(true) {      
+
+    switch(true) {
       case /401/.test(code):
         ElMessage({
           type: 'error',
           message: '未认证，请登录！',
           showClose: true,
         })
-        
+
         router.push('/401')
         // or
         router.push('login')
         break
-        
+
       case /403/.test(code):
         ElMessage({
           type: 'error',
           message: '权限不足！',
           showClose: true,
         })
-        
+
         router.push('/403')
         break
-        
+
       case /404/.test(code):
         ElMessage({
           type: 'error',
           message: '未找到资源，请核对链接！',
           showClose: true,
         })
-        
+
         router.push('/404')
         break
-        
+
       default:
         break
     }
-    
+
     return {
       code: 0,
       message: '服务器错误',
@@ -317,10 +317,10 @@ service.interceptor.request.use(
 	(config) => {
     // 全局使用 loading
     showLoading = ElLoading.service({ fullscreen: true })
-    
+
     const token = localStorage.getItem('token')
     config.headers.Authorization = token
-    
+
     // 如果 pending 中有过请求，则取消那次请求；如果没有过请求，将取消方法存进来。
     if (taskList.has(config.url)) {
      	const cancel = taskList.get(config.url)
@@ -331,7 +331,7 @@ service.interceptor.request.use(
         taskList.set(config.url, cancel)
       })
     }
-    
+
     return config
   }
 )
