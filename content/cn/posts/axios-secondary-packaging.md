@@ -355,3 +355,5 @@ axios 的本质其实对 `web api` 以及 `http` 的一些封装。以前的 xhr
 2. [http](https://nodejs.org/api/http.html)
 
 详情请见：https://github.com/axios/axios/blob/master/lib/axios.js
+
+- [ ] 下次继续
