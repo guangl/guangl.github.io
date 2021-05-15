@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on guangl's blog</title><link>https://guangl.github.io/posts/</link><description>Recent content in Posts on guangl's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 May 2021 00:30:13 +0800</lastBuildDate><atom:link href="https://guangl.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>将进酒</title><link>https://guangl.github.io/posts/qiang-jin-jiu/</link><pubDate>Fri, 14 May 2021 00:30:13 +0800</pubDate><guid>https://guangl.github.io/posts/qiang-jin-jiu/</guid><description>将进酒 (唐) 李白
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on guangl's blog</title><link>https://guangl.github.io/posts/</link><description>Recent content in Posts on guangl's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 15 May 2021 00:24:25 +0800</lastBuildDate><atom:link href="https://guangl.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>大致阅读 axios 的源码</title><link>https://guangl.github.io/posts/the-source-code-of-axios/</link><pubDate>Sat, 15 May 2021 00:24:25 +0800</pubDate><guid>https://guangl.github.io/posts/the-source-code-of-axios/</guid><description>来解读一下 axios 的源代码。
+首先说明，解读的源代码的版本为 0.21.1
+看一个项目的代码，首先肯定在入口文件 ./index.js 里。 打开 index.js 只有一行代码：
+module.exports = require(&amp;#39;./lib/axios&amp;#39;); 这行代码引入了 ./lib/axios 这个文件，再去看看 ./lib/axios 这个文件，里面才是真正的代码。
+lib/axios 先看导出，最后一行代码：
+module.exports.default = axios; 导出了 axios 这个对象，说明这个对象就是我们平时使用的 axios 了。
+构建 axios 对象 可以在此文件中找到这一行代码。
+var axios = createInstance(defaults); 在看到这个函数的定义：
+function createInstance(defaultConfig) { var context = new Axios(defaultConfig); var instance = bind(Axios.prototype.request, context); // Copy axios.prototype to instance utils.extend(instance, Axios.prototype, context); // Copy context to instance utils.extend(instance, context); return instance; } 返回了 instance 这个变量，然而这个变量也是通过 bind 此函数来定义的。</description></item><item><title>将进酒</title><link>https://guangl.github.io/posts/qiang-jin-jiu/</link><pubDate>Fri, 14 May 2021 00:30:13 +0800</pubDate><guid>https://guangl.github.io/posts/qiang-jin-jiu/</guid><description>将进酒 (唐) 李白
 君不见黄河之水天上来，奔流到海不复回。
 君不见高堂明镜悲白发，朝如青丝暮成雪。
 人生得意须尽欢，莫使金樽空对月。
