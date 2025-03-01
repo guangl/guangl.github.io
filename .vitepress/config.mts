@@ -109,7 +109,7 @@ export default defineConfig({
   description: "The question of dameng database",
   base: "/dm-question/",
 
-  srcDir: "./src",
+  srcDir: "./docs",
   outDir: "./dist",
   assetsDir: "./assets",
 
