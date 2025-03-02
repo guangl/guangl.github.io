@@ -101,7 +101,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: "https://github.com/guangl/dm-question/edit/main/src/:path",
+      pattern: "https://github.com/guangl/dm-question/edit/main/:path",
       text: "在 GitHub 上编辑此页面",
     },
 
