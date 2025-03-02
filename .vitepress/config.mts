@@ -6,6 +6,9 @@ import {
   postgresqlSidebar,
   sqliteSidebar,
 } from "./sidebar/database";
+import {
+  frontendSidebar
+} from "./sidebar/web-develope";
 
 function getNavigation(): DefaultTheme.NavItem[] {
   return [
@@ -15,6 +18,11 @@ function getNavigation(): DefaultTheme.NavItem[] {
       link: "/database/dm/dm-thread",
       activeMatch: "/database/",
     },
+    {
+      text: "Web 开发",
+      link: "/web-develope/tools/axios-post-packaging",
+      activeMatch: "/web-develope/",
+    }
   ];
 }
 
@@ -66,6 +74,9 @@ export default defineConfig({
         ...postgresqlSidebar,
         ...sqliteSidebar,
         ...mysqlSidebar,
+      ],
+      "/web-develope/": [
+        ...frontendSidebar,
       ],
     },
 
