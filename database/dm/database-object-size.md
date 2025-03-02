@@ -1,0 +1,40 @@
+---
+aliases: [数据库对象大小]
+create_time: 2024-03-03 18:04:40
+linter-yaml-title-alias: 数据库对象大小
+title: 数据库对象大小
+update_time: 2025-02-04 11:25:26
+---
+
+## 表大小
+
+```sql
+SELECT A.OWNER AS OWNER, 
+         A.SEGMENT_NAME AS TABLE_NAME, 
+         A.BYTES/1024/1024 AS "TABLE_SIZE(MB)", 
+         A.TABLESPACE_NAME AS TABLE_TABLESPACE, 
+         B.COMMENTS AS TABLE_COMMENT 
+    FROM DBA_SEGMENTS A, 
+         DBA_TAB_COMMENTS B 
+   WHERE A.OWNER=B.OWNER 
+     AND A.SEGMENT_NAME=B.TABLE_NAME 
+     AND A.OWNER='SYSDBA'
+ORDER BY SEGMENT_NAME ASC;
+```
+
+## 索引大小
+
+```sql
+SELECT
+  TABLE_OWNER AS OWNER,
+  TABLE_NAME,
+  INDEX_NAME,
+  INDEX_TYPE,
+  TABLESPACE_NAME,
+  JOIN_INDEX AS IS_JOIN_INDEX,
+  DECODE (VISIBILITY, 'VISIBLE', '可见', 'INVISIBLE', '不可见') AS IS_VISIBILITY
+FROM
+  DBA_INDEXES
+WHERE
+  OWNER = 'SYSDBA';
+```

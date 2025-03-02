@@ -1,80 +1,19 @@
 import { defineConfig, type DefaultTheme } from "vitepress";
+import {
+  dmSidebar,
+  oracleSidebar,
+  mysqlSidebar,
+  postgresqlSidebar,
+  sqliteSidebar,
+} from "./sidebar/database";
 
 function getNavigation(): DefaultTheme.NavItem[] {
   return [
     { text: "主页", link: "/" },
-    { text: "数据库", link: "/database", activeMatch: "/database/" },
-    { text: "驱动", link: "/drivers", activeMatch: "/drivers/" },
-    { text: "参数", link: "/parameters", activeMatch: "/parameters/" },
-  ];
-}
-
-function getSidebarDrivers(): DefaultTheme.SidebarItem[] {
-  return [
     {
-      text: "Java",
-      base: "/drivers/java/",
-      collapsed: true,
-      items: [
-        {
-          text: "Java",
-          link: "java",
-        },
-        {
-          text: "Hibernate",
-          link: "hibernate",
-        },
-        {
-          text: "MyBatis",
-          link: "mybatis",
-        },
-        {
-          text: "Spring Data JPA",
-          link: "spring_data_jpa",
-        },
-      ],
-    },
-    {
-      text: "Node.js",
-      base: "/drivers/node/",
-      collapsed: true,
-      items: [
-        {
-          text: "Node.js",
-          link: "node",
-        },
-        {
-          text: "TypeORM",
-          link: "typeorm",
-        },
-      ],
-    },
-  ];
-}
-
-function getSidebarParameters(): DefaultTheme.SidebarItem[] {
-  return [
-    {
-      text: "查询相关",
-      base: "/parameters/query/",
-      collapsed: true,
-      items: [{ text: "BATCH_PARAM_OPT", link: "batch_param_opt" }],
-    },
-  ];
-}
-
-function getSidebarDatabase(): DefaultTheme.SidebarItem[] {
-  return [
-    {
-      text: "网络相关",
-      base: "/database/",
-      collapsed: true,
-      items: [
-        {
-          text: "数据库连接",
-          link: "connection",
-        },
-      ],
+      text: "数据库",
+      link: "/database/dm/dm-thread",
+      activeMatch: "/database/",
     },
   ];
 }
@@ -105,11 +44,11 @@ function getSearchTranslate(): DefaultTheme.LocalSearchOptions["translations"] {
 
 export default defineConfig({
   lang: "zh-Hans",
-  title: "达梦数据库问题合集",
-  description: "The question of dameng database",
+  title: "学习过程",
+  description: "",
   base: "/dm-question/",
 
-  srcDir: "./src",
+  srcDir: ".",
   outDir: "./dist",
   assetsDir: "./assets",
 
@@ -121,9 +60,13 @@ export default defineConfig({
     nav: getNavigation(),
 
     sidebar: {
-      "/drivers/": getSidebarDrivers(),
-      "/parameters/": getSidebarParameters(),
-      "/database/": getSidebarDatabase(),
+      "/database/": [
+        ...dmSidebar,
+        ...oracleSidebar,
+        ...postgresqlSidebar,
+        ...sqliteSidebar,
+        ...mysqlSidebar,
+      ],
     },
 
     socialLinks: [{ icon: "github", link: "https://github.com/guangl" }],
@@ -168,5 +111,9 @@ export default defineConfig({
         translations: getSearchTranslate(),
       },
     },
+  },
+
+  markdown: {
+    lineNumbers: true,
   },
 });
