@@ -20,7 +20,7 @@ DM 在启动时会创建所有的线程。线程类型如下：
 * dm_sql_aux_thd
 * dm_tskwrk_thd
 * dm_trctsk_thd
-* dm_redlog_thd
+* dm_redolog_thd
 * dm_lsnr_thd
 * dm_sched_thd
 * dm_chkpnt_thd

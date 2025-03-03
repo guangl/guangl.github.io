@@ -6,23 +6,21 @@ import {
   postgresqlSidebar,
   sqliteSidebar,
 } from "./sidebar/database";
-import {
-  frontendSidebar
-} from "./sidebar/web-develope";
+import { frontendSidebar } from "./sidebar/web-develope";
 
 function getNavigation(): DefaultTheme.NavItem[] {
   return [
     { text: "主页", link: "/" },
     {
       text: "数据库",
-      link: "/database/dm/dm-thread",
+      link: "/database/dm/question/cannot-get-user-lang",
       activeMatch: "/database/",
     },
     {
       text: "Web 开发",
       link: "/web-develope/tools/axios-post-packaging",
       activeMatch: "/web-develope/",
-    }
+    },
   ];
 }
 
@@ -75,9 +73,7 @@ export default defineConfig({
         ...sqliteSidebar,
         ...mysqlSidebar,
       ],
-      "/web-develope/": [
-        ...frontendSidebar,
-      ],
+      "/web-develope/": [...frontendSidebar],
     },
 
     socialLinks: [{ icon: "github", link: "https://github.com/guangl" }],
