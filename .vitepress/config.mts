@@ -52,7 +52,7 @@ export default defineConfig({
   lang: "zh-Hans",
   title: "学习过程",
   description: "",
-  base: "/dm-question/",
+  base: "/dm-learn/",
 
   srcDir: ".",
   outDir: "./dist",
@@ -108,7 +108,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: "https://github.com/guangl/dm-question/edit/main/:path",
+      pattern: "https://github.com/guangl/dm-learn/edit/main/:path",
       text: "在 GitHub 上编辑此页面",
     },
 
