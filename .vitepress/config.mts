@@ -51,7 +51,7 @@ function getSearchTranslate(): DefaultTheme.LocalSearchOptions["translations"] {
 export default defineConfig({
   lang: "zh-Hans",
   title: "学习过程",
-  description: "",
+  description: "Code change the world.",
   base: "/dm-learn/",
 
   srcDir: ".",
@@ -61,7 +61,8 @@ export default defineConfig({
   appearance: true,
 
   themeConfig: {
-    i18nRouting: true,
+    logo: "/logo.png",
+    // siteTitle: "learn something",
 
     nav: getNavigation(),
 
