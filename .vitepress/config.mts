@@ -61,7 +61,7 @@ export default defineConfig({
   appearance: true,
 
   themeConfig: {
-    logo: "/logo.png",
+    logo: "https://github.com/guangl/dm-learn/blob/main/logo.png?raw=true",
     // siteTitle: "learn something",
 
     nav: getNavigation(),
