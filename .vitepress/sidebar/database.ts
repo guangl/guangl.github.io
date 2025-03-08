@@ -53,3 +53,59 @@ export const dmSidebar = [
     ],
   },
 ];
+
+export const sqliteSidebar = [
+  {
+    text: "常用 SQL 合集",
+    base: "/database/sqlite/",
+    collapsed: true,
+    items: [
+      {
+        text: "查询所有对象",
+        link: "sqlite-query-all-objects",
+      },
+    ],
+  },
+];
+
+export const oracleSidebar = [
+  {
+    text: "常用 SQL 合集",
+    base: "/database/oracle/",
+    collapsed: true,
+    items: [
+      {
+        text: "收集统计信息",
+        link: "oracle-collect-statistics",
+      },
+    ],
+  },
+];
+
+export const postgresSidebar = [
+  {
+    text: "Getting Started",
+    base: "/database/postgres/",
+    collapsed: true,
+    items: [
+      {
+        text: "安装数据库",
+        link: "postgres-installation",
+      },
+    ],
+  },
+];
+
+export const mysqlSidebar = [
+  {
+    text: "Getting Started",
+    base: "/database/mysql/",
+    collapsed: true,
+    items: [
+      {
+        text: "安装数据库",
+        link: "mysql-installation",
+      },
+    ],
+  },
+];

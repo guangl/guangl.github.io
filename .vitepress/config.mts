@@ -1,14 +1,35 @@
 import { defineConfig, type DefaultTheme } from "vitepress";
-import { dmSidebar } from "./sidebar/database";
-import { frontendSidebar } from "./sidebar/web-develope";
+import sidebar from "./sidebar";
 
 function getNavigation(): DefaultTheme.NavItem[] {
   return [
     { text: "主页", link: "/" },
     {
-      text: "达梦数据库",
-      link: "/database/dm/dm-thread",
+      text: "数据库",
+      // link: "/database/dm/dm-thread",
       activeMatch: "/database/",
+      items: [
+        {
+          text: "达梦数据库",
+          link: "/database/dm/dm-thread",
+        },
+        {
+          text: "Oracle",
+          link: "/database/oracle/oracle-collect-statistics",
+        },
+        {
+          text: "PostgreSQL",
+          link: "/database/postgres/postgres-installation",
+        },
+        {
+          text: "SQLite",
+          link: "/database/sqlite/sqlite-query-all-objects",
+        },
+        {
+          text: "MySQL",
+          link: "/database/mysql/mysql-installation",
+        },
+      ],
     },
     {
       text: "Web 开发",
@@ -60,10 +81,7 @@ export default defineConfig({
 
     nav: getNavigation(),
 
-    sidebar: {
-      "/database/": dmSidebar,
-      "/web-develope/": frontendSidebar,
-    },
+    sidebar,
 
     socialLinks: [{ icon: "github", link: "https://github.com/guangl" }],
 
