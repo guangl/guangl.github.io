@@ -12,8 +12,8 @@ function getNavigation(): DefaultTheme.NavItem[] {
   return [
     { text: "主页", link: "/" },
     {
-      text: "数据库",
-      link: "/database/dm/question/cannot-get-user-lang",
+      text: "达梦数据库",
+      link: "/database/dm/dm-thread",
       activeMatch: "/database/",
     },
     {
@@ -69,10 +69,10 @@ export default defineConfig({
     sidebar: {
       "/database/": [
         ...dmSidebar,
-        ...oracleSidebar,
-        ...postgresqlSidebar,
-        ...sqliteSidebar,
-        ...mysqlSidebar,
+        // ...oracleSidebar,
+        // ...postgresqlSidebar,
+        // ...sqliteSidebar,
+        // ...mysqlSidebar,
       ],
       "/web-develope/": [...frontendSidebar],
     },
