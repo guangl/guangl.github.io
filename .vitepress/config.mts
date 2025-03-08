@@ -55,7 +55,7 @@ export default defineConfig({
   appearance: true,
 
   themeConfig: {
-    logo: "logo.jpg",
+    logo: "logo_transparent.jpg",
     // siteTitle: "learn something",
 
     nav: getNavigation(),
