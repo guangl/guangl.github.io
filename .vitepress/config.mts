@@ -1,11 +1,5 @@
 import { defineConfig, type DefaultTheme } from "vitepress";
-import {
-  dmSidebar,
-  oracleSidebar,
-  mysqlSidebar,
-  postgresqlSidebar,
-  sqliteSidebar,
-} from "./sidebar/database";
+import { dmSidebar } from "./sidebar/database";
 import { frontendSidebar } from "./sidebar/web-develope";
 
 function getNavigation(): DefaultTheme.NavItem[] {
@@ -61,20 +55,14 @@ export default defineConfig({
   appearance: true,
 
   themeConfig: {
-    logo: "https://github.com/guangl/dm-learn/blob/main/logo.png?raw=true",
+    logo: "logo.jpg",
     // siteTitle: "learn something",
 
     nav: getNavigation(),
 
     sidebar: {
-      "/database/": [
-        ...dmSidebar,
-        // ...oracleSidebar,
-        // ...postgresqlSidebar,
-        // ...sqliteSidebar,
-        // ...mysqlSidebar,
-      ],
-      "/web-develope/": [...frontendSidebar],
+      "/database/": dmSidebar,
+      "/web-develope/": frontendSidebar,
     },
 
     socialLinks: [{ icon: "github", link: "https://github.com/guangl" }],
