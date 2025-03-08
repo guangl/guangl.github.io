@@ -46,7 +46,7 @@ export default defineConfig({
   lang: "zh-Hans",
   title: "学习过程",
   description: "Code change the world.",
-  base: "/dm-learn/",
+  base: "/",
 
   srcDir: ".",
   outDir: "./dist",
