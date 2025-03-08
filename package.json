@@ -20,6 +20,8 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+  },
+  "dependencies": {
+    "esbuild": "^0.25.0"
   }
 }
-
