@@ -1,4 +1,5 @@
 import { frontendSidebar } from "./web-develope";
+import { operatingSystemSidebar } from "./operating-system";
 import {
   dmSidebar,
   sqliteSidebar,
@@ -14,4 +15,5 @@ export default {
   "/database/mysql": mysqlSidebar,
   "/database/sqlite": sqliteSidebar,
   "/web-develope/": frontendSidebar,
+  "/operating-system/": operatingSystemSidebar,
 };

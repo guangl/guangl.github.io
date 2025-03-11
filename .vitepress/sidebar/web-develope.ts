@@ -6,6 +6,7 @@ export const frontendSidebar = [
     items: [
       {
         text: "工具",
+        collapsed: true,
         items: [
           {
             text: "axios 二次开发",

@@ -36,6 +36,11 @@ function getNavigation(): DefaultTheme.NavItem[] {
       link: "/web-develope/tools/axios-post-packaging",
       activeMatch: "/web-develope/",
     },
+    {
+      text: "操作系统",
+      link: "/operating-system/command/git",
+      activeMatch: "/operating-system/",
+    }
   ];
 }
 
