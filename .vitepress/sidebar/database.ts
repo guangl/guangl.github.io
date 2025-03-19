@@ -11,6 +11,17 @@ export const dmSidebar = [
     ],
   },
   {
+    text: "功能合集",
+    base: "/database/dm/",
+    collapsed: true,
+    items: [
+      {
+        text: "数据库缓存",
+        link: "features/database-cache",
+      }
+    ]
+  },
+  {
     text: "问题合集",
     base: "/database/dm/",
     collapsed: true,
