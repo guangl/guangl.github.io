@@ -1,5 +1,6 @@
 import { frontendSidebar } from "./web-develope";
 import { operatingSystemSidebar } from "./operating-system";
+import { computerScienceSidebar } from "./books";
 import {
   dmSidebar,
   sqliteSidebar,
@@ -16,4 +17,5 @@ export default {
   "/database/sqlite": sqliteSidebar,
   "/web-develope/": frontendSidebar,
   "/operating-system/": operatingSystemSidebar,
+  "/books/computer-science": computerScienceSidebar
 };
