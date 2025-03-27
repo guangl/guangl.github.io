@@ -40,6 +40,17 @@ function getNavigation(): DefaultTheme.NavItem[] {
       text: "操作系统",
       link: "/operating-system/command/git",
       activeMatch: "/operating-system/",
+    },
+    {
+      text: "Book",
+      // link: "/database/dm/dm-thread",
+      activeMatch: "/books/",
+      items: [
+        {
+          text: "计算机科学",
+          link: "/books/computer-science/sql-core-idea"
+        }
+      ]
     }
   ];
 }
