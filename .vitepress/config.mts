@@ -85,7 +85,7 @@ export default defineConfig({
   description: "Code change the world.",
   base: "/",
 
-  srcDir: ".",
+  srcDir: "./docs",
   outDir: "./dist",
   assetsDir: "./assets",
 
