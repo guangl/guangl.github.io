@@ -63,6 +63,15 @@ export const dmSidebar = [
       },
     ],
   },
+  {
+    text: "参数解析",
+    base: "/database/dm/",
+    collapsed: true,
+    items: [{
+      text: "COMPLEX_VIEW_MERGING",
+      link: "arguments/complex-view-merging",
+    }],
+  }
 ];
 
 export const sqliteSidebar = [
