@@ -67,10 +67,16 @@ export const dmSidebar = [
     text: "参数解析",
     base: "/database/dm/",
     collapsed: true,
-    items: [{
-      text: "COMPLEX_VIEW_MERGING",
-      link: "arguments/complex-view-merging",
-    }],
+    items: [
+      {
+        text: "COMPLEX_VIEW_MERGING",
+        link: "arguments/complex-view-merging",
+      },
+      {
+        text: "BATCH_PARAM_OPT",
+        link: "arguments/batch-param-opt",
+      }
+    ],
   }
 ];
 
