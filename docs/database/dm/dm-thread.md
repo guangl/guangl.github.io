@@ -333,30 +333,3 @@ flush checkpoint 的线程。主要负责 CKPT_LSN 的管理。
 #3  0x00007ffff79ae1da in start_thread () from /lib64/libpthread.so
 #4  0x00007ffff6cffe73 in clone () from /lib64/libc.so
 ```
-
-## 创建顺序
-
-* tlog_flush_thread
-* dm_dpc_pthd * 16
-* dm_quit_thd * 1
-* dm_io_thd * 2
-* nsvr_pwr_write_thread
-* dm_rsyswrk_thd * 2
-* dm_hio_thd * 2
-* dm_chkpnt_thd * 1
-* dm_redolog_thd * 1
-* dm_tskwrk_thd * 1
-* slog_flush_thread
-* dm_sql_aux_thd * 1
-* dm_purge_thd * 1
-* trx4_active_view_broadcast_thread
-* dm_trctsk_thd * 1
-* dm_wrkgrp_thd * 1
-* dm_audit_thd * 2
-* dm_sched_thd * 1
-* dm_lsnr_thd * 1
-* nsvr_console_thread
-* dm_sql_thd * 1
-
-> [!warning]
-> 只有一个 slog 但是却有两个 `dm_sqllog_thd`，可能是 `tlog_flush_thread` 也算是 slog 吧？
