@@ -18,6 +18,10 @@ export const dmSidebar = [
       {
         text: "数据库缓存",
         link: "features/database-cache",
+      },
+      {
+        text: "单机在线转主备",
+        link: "features/single-machine-online-to-master-slave",
       }
     ]
   },
