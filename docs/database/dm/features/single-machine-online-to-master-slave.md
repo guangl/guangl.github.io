@@ -83,15 +83,179 @@ BACKUP DATABASE FULL BACKUPSET 'FULL_BAK_20250706' COMPRESSED LEVEL 1 PARALLEL 4
 ./dmrman CTLSTMT="RECOVER DATABASE '/data/DM02/dm.ini' UPDATE DB_MAGIC"
 ```
 
-## 在线添加 dmmal
+## 在线添加 `dmmal`
 
-需要将单机实例与备份实例连接起来，就需要在线添加 dmmal 通讯。
+需要将单机实例与备份实例连接起来，就需要在线添加 `dmmal` 通讯。
 
 ```sql
-SP_SET_PARA_VALUE(1,'MAL_INI',1);
-SF_MAL_CONFIG(1,0);
-SF_MAL_INST_ADD('MAL_INST1','DM01','10.76.11.205',65437,'10.76.11.205',65237,65537,0,65337);
-SF_MAL_INST_ADD('MAL_INST2','DM02','10.76.11.205',65438,'10.76.11.205',65238,65538,0,65338);
-SF_MAL_CONFIG_APPLY();
-SF_MAL_CONFIG(0,0);
+CALL SF_MAL_INST_ADD_APPLY('MAL_INST','DM01','10.76.11.205',65437,'10.76.11.205',65237,65137,0,65337);
+CALL SF_MAL_INST_ADD_APPLY('MAL_INST1','DM02','10.76.11.205',65438,'10.76.11.205',65238,65138,0,65338);
+CALL SP_SET_PARA_VALUE(1,'MAL_INI',1);
 ```
+
+出现以下截图则代表操作成功：
+
+![add dmmal setting successfully](/database/single-machine-online-to-master-slave-03.png)
+
+
+## 添加 `REALTIME` 归档
+
+将 `DM01` 的归档发送到 `DM02` 去，需要在 `DM01` 上配置 `DM02` 的 `REALTIME` 归档。
+命令可以在 normal/open 状态下执行。
+
+```sql
+ALTER DATABASE ADD ARCHIVELOG 'TYPE=REALTIME,DEST=DM02';
+```
+
+## 修改新实例的配置文件
+
+需要修改四个文件。
+
+### dm.ini
+
+修改原来的文件即可。
+
+```ini
+MAL_INI = 1
+ARCH_INI = 1
+```
+
+### dmmal.ini
+
+需要在实例目录新建文件，文件内容如下：
+
+```ini
+#DaMeng Database Mail Configuration file
+#this is comments
+MAL_CHECK_INTERVAL     = 30
+MAL_COMBIN_BUF_SIZE    = 0
+MAL_SEND_THRESHOLD = 2048
+MAL_CONN_FAIL_INTERVAL = 10
+MAL_LOGIN_TIMEOUT      = 15
+MAL_BUF_SIZE           = 100
+MAL_SYS_BUF_SIZE       = 0
+MAL_VPOOL_SIZE         = 128
+MAL_COMPRESS_LEVEL     = 0
+MAL_TEMP_PATH          =
+
+[MAL_INST]
+    MAL_INST_NAME    = DM01
+    MAL_HOST         = 10.76.11.205
+    MAL_PORT         = 65437
+    MAL_INST_HOST    = 10.76.11.205
+    MAL_INST_PORT    = 65237
+    MAL_DW_PORT      = 65137
+    MAL_LINK_MAGIC   = 0
+    MAL_INST_DW_PORT = 65337
+
+[MAL_INST1]
+    MAL_INST_NAME    = DM02
+    MAL_HOST         = 10.76.11.205
+    MAL_PORT         = 65438
+    MAL_INST_HOST    = 10.76.11.205
+    MAL_INST_PORT    = 65238
+    MAL_DW_PORT      = 65138
+    MAL_LINK_MAGIC   = 0
+    MAL_INST_DW_PORT = 65338
+```
+
+### dmarch.ini
+
+需要在实例目录新建文件，文件内容如下：
+
+```ini
+#DaMeng Database Archive Configuration file
+#this is comments
+
+        ARCH_WAIT_APPLY      = 0
+
+[ARCHIVE_LOCAL1]
+        ARCH_TYPE            = LOCAL
+        ARCH_DEST            = /data/hbtest/lg/bin_4_80/data/DM02/arch
+        ARCH_FILE_SIZE       = 2048
+        ARCH_SPACE_LIMIT     = 102400
+        ARCH_FLUSH_BUF_SIZE  = 2
+        ARCH_HANG_FLAG       = 1
+```
+
+### dmwatcher.ini
+
+需要在实例目录新建文件，文件内容如下：
+
+```ini
+[DM01]
+DW_TYPE = GLOBAL
+DW_MODE = AUTO
+DW_ERROR_TIME = 10
+INST_RECOVER_TIME = 60
+INST_ERROR_TIME = 10
+INST_OGUID = 20250708
+INST_INI = /data/hbtest/lg/bin_4_80/data/DM02/dm.ini
+INST_AUTO_RESTART = 1
+INST_STARTUP_CMD = /data/hbtest/lg/bin_4_80/dmserver
+RLOG_SEND_THRESHOLD = 0
+RLOG_APPLY_THRESHOLD = 0
+```
+
+## 使用 `mount` 状态启动新实例
+
+命令如下：
+
+```bash
+./dmserver /data/hbtest/lg/bin_4_80/data/DM02/dm.ini mount
+```
+
+## 修改新实例 `oguid` 以及数据库状态
+
+命令如下：
+
+```bash
+## 登录实例
+./disql SYSDBA/DMDBA_hust4400@127.0.0.1:65238
+
+## 修改 oguid, 数据库状态
+alter database standby;
+sp_set_oguid(20250708);
+```
+## 旧实例新增 `dmwatcher`
+
+在旧实例的实例目录中创建 `dmwatcher.ini` 文件，文件内容如下：
+
+```ini
+[DM01]
+DW_TYPE = GLOBAL
+DW_MODE = AUTO
+DW_ERROR_TIME = 10
+INST_RECOVER_TIME = 60
+INST_ERROR_TIME = 10
+INST_OGUID = 20250708
+INST_INI = /data/hbtest/lg/bin_4_80/data/DM02/dm.ini
+INST_AUTO_RESTART = 1
+INST_STARTUP_CMD = /data/hbtest/lg/bin_4_80/dmserver
+RLOG_SEND_THRESHOLD = 0
+RLOG_APPLY_THRESHOLD = 0
+```
+
+## 修改旧实例的 `oguid` 以及数据库状态
+
+命令如下：
+
+```sql
+alter database primary force;
+sp_set_oguid(20250708);
+```
+
+## 启动新旧实例的 `dmwatcher`
+
+命令如下：
+
+```bash
+./dmwatcher /data/hbtest/lg/bin_4_80/data/DM01/dmwatcher.ini
+./dmwatcher /data/hbtest/lg/bin_4_80/data/DM02/dmwatcher.ini
+```
+
+## 查看 `dmmonitor`
+
+见到如下截图，则代表搭建成功。
+
+![dmmonitor](/database/single-machine-online-to-master-slave-04.png)
