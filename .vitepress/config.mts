@@ -43,12 +43,15 @@ function getNavigation(): DefaultTheme.NavItem[] {
     },
     {
       text: "Book",
-      // link: "/database/dm/dm-thread",
       activeMatch: "/books/",
       items: [
         {
           text: "计算机科学",
           link: "/books/computer-science/sql-core-idea"
+        },
+        {
+          text: "哲学",
+          link: "/books/philosophy/on-protracted-war"
         }
       ]
     }

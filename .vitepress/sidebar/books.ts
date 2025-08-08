@@ -15,3 +15,16 @@ export const computerScienceSidebar = [
     items: [],
   }
 ];
+
+
+export const philosophySidebar = [
+  {
+    text: "毛泽东",
+    base: "/books/philosophy/",
+    collapsed: true,
+    items: [{
+      text: "论持久战",
+      link: "on-protracted-war"
+    }]
+  }
+]
