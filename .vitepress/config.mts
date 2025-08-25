@@ -52,7 +52,11 @@ function getNavigation(): DefaultTheme.NavItem[] {
         {
           text: "哲学",
           link: "/books/philosophy/on-protracted-war"
-        }
+        },
+        {
+          text: "社会科学",
+          link: "/books/social-science/work-consumerism-and-the-new-poor"
+        },
       ]
     }
   ];
@@ -135,7 +139,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: "https://github.com/guangl/dm-learn/edit/main/:path",
+      pattern: "https://github.com/guangl/guangl.github.io/edit/main/:path",
       text: "在 GitHub 上编辑此页面",
     },
 
