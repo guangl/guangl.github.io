@@ -1,5 +1,3 @@
-# /database/batch-param-opt
-
 是否启用 DML 的参数优化。
 
 ## 参数解析
