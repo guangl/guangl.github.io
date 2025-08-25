@@ -1,6 +1,6 @@
 import { frontendSidebar } from "./web-develope";
 import { operatingSystemSidebar } from "./operating-system";
-import { computerScienceSidebar, philosophySidebar } from "./books";
+import { computerScienceSidebar, philosophySidebar, socialScienceSidebar } from "./books";
 import {
   dmSidebar,
   sqliteSidebar,
@@ -18,5 +18,6 @@ export default {
   "/web-develope/": frontendSidebar,
   "/operating-system/": operatingSystemSidebar,
   "/books/computer-science": computerScienceSidebar,
-  "/books/philosophy": philosophySidebar
+  "/books/philosophy": philosophySidebar,
+  "/books/social-science": socialScienceSidebar
 };

@@ -28,3 +28,15 @@ export const philosophySidebar = [
     }]
   }
 ]
+
+export const socialScienceSidebar = [
+  {
+    text: "社会科学",
+    base: "/books/social-science/",
+    collapsed: true,
+    items: [{
+      text: "工作、消费主义和新穷人",
+      link: "work-consumerism-and-the-new-poor"
+    }]
+  }
+]
