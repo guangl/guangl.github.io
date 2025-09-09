@@ -63,7 +63,7 @@ UNION
 SELECT A4,B4 FROM TEST_LG4 WHERE B4 < 5;
 ```
 
-### `VIEW_FILTER_MERGING = 0`
+### 值为 0
 
 不进行视图合并。
 
@@ -99,7 +99,7 @@ EXPLAIN SELECT /*+VIEW_FILTER_MERGING(0) COMPLEX_VIEW_MERGING(0)*/ * FROM V_TEST
 
 此时 `SLCT2` 并没有下放到视图内，执行计划也就是正常的情况，先把 `select * from v_test_lg` 查询出来，然后再进行过滤。
 
-### `VIEW_FILTER_MERGING = 1`
+### 值为 1
 
 尽可能地进行视图合并。
 
@@ -130,7 +130,7 @@ EXPLAIN SELECT /*+VIEW_FILTER_MERGING(1) COMPLEX_VIEW_MERGING(0)*/ * FROM V_TEST
 这个时候会把 `where a = 1` 下推到视图中每一个查询里。
 可以看到少了对 `TEST_LG3` 表的查询，这是因为 `TEST_LG3` 的查询项 `A3 > 5 AND A3 = 1` 必定为 false，所以直接把 `TEST_LG3` 裁剪了。
 
-### `VIEW_FILTER_MERGING = 2`
+### 值为 2
 
 自动判断是否进行视图合并，以下两种条件则不进行视图合并：
 * 视图在查询中出现次数多次且不是简单视图；
@@ -273,7 +273,7 @@ where
 ```
 此时 `TEST_LG3` 也没有进行裁剪。
 
-### `VIEW_FILTER_MERGING = 4`
+### 值为 4
 
 视图包含分析函数时，如果分析函数的 `partition by` 具有唯一性，则外层过滤条件会下推到视图内部。
 
@@ -328,7 +328,7 @@ where
 
 其实可以看到，`view_filter_merging = 0` 的执行计划多了一个 `SLCT2` 操作符，所以说，当 `view_filter_merging = 4` 的时候，条件是可以下推的，以此来减少数据页扫描的数量。
 
-### `VIEW_FILTER_MERGING = 8`
+### 值为 8
 
 如果派生表存在集函数，则不进行条件下推优化。
 
@@ -359,23 +359,23 @@ select * from ( select max(c1),1 x from t1 ) t where x > 5;
 ```
 此时的 `SLCT2` 操作符在 `PRJT2` 操作符上面，所以是没有下推行为的。
 
-### `VIEW_FILTER_MERGING = 16`
+### 值为 16
 
 - [ ] 文档例子有问题
 
 收集公用表达式相关的所有过滤条件，改写合并所有条件，并下放到公用表达式的内部。
 
-### `VIEW_FILTER_MERGING = 32`
+### 值为 32
 
 `TOP` 信息下推到派生表。
 
-### `VIEW_FILTER_MERGING = 64`
+### 值为 64
 
 - [ ] 文档例子有问题
 
 外层布尔表达式隐式声明 `IS NOT NULL` 属性，对派生表/视图对应的列显示添加 `COL IS NOT NULL` 布尔表达式。
 
-### `VIEW_FILTER_MERGING = 128`
+### 值为 128
 
 外层 `ROWNUM` 过滤表达式尝试下放至视图/派生表生成 `TOP` 子句。
 查看以下 SQL 的执行计划
@@ -420,7 +420,7 @@ where
 
 对比计划可以发现，将 `SLCT2` 操作符改为了 `TOPN2`，并且下放到了 `PRJT2` 里面。
 
-### `VIEW_FILTER_MERGING = 256`
+### 值为 256
 
 - [ ] 文档例子有问题
 
@@ -428,11 +428,11 @@ where
 * 过滤条件对应派生表的查询项，并且是查询表达式；
 * 过滤条件列映射为查询表达式的引用列，并且引用列来自派生表的 `FROM` 项；
 
-### `VIEW_FILTER_MERGING = 512`
+### 值为 512
 
 视图已经有过滤条件的，不重复下放，为了后续能使用 `htab`。
 
-### `VIEW_FILTER_MERGING = 1024`
+### 值为 1024
 
 包含该值时，取消下述限制：
 * 视图是集合运算时的分支数应小于 10；
