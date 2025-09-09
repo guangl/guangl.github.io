@@ -79,6 +79,10 @@ export const dmSidebar = [
       {
         text: "BATCH_PARAM_OPT",
         link: "arguments/batch-param-opt",
+      },
+      {
+        text: "view-filter-merging",
+        link: "arguments/view-filter-merging",
       }
     ],
   }
